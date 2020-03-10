@@ -1,4 +1,7 @@
+version: '3'
+
 services:
+
   mysql:
     build: ./vm/mysql
     image: mysql:5.7
@@ -16,6 +19,7 @@ services:
       MYSQL_USER: aratasato
       MYSQL_PASSWORD: hoge
       TZ: Asia/Tokyo
+      
   server:
     build:
       context: ./
@@ -25,10 +29,11 @@ services:
     volumes:
       - .:/go/src/github.com/aratasato/geing-server
 
+volumes:
+  mysql-data:
+  
 networks:
   default:
     external:
       name: shared
 
-volumes:
-  mysql-data:
